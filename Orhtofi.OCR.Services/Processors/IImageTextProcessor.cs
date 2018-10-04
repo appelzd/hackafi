@@ -6,7 +6,7 @@ namespace Orthofi.OCR.Processors
 {
     public interface IImageTextProcessor
     {
-        dynamic GetResultsForImage(string imagePath);
+        string GetResultsForImage(string imagePath);
 
     }
 }

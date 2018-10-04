@@ -23,7 +23,7 @@ namespace Orthofi.OCR.Processors
 
         //TODO we should use a factory, which we inject to determin the client, etc.
         //that way, we have testability and plugability
-        public dynamic GetResultsForImage(string imagePath)
+        public string GetResultsForImage(string imagePath)
         {
             var client = GetClient();
             try
@@ -33,16 +33,18 @@ namespace Orthofi.OCR.Processors
 
                 var response = client.DetectDocumentTextAsync(image).Result;
 
-                foreach (var page in response.Pages)
-                {
-                    foreach (var block in page.Blocks)
-                    {
-                        foreach (var paragraph in block.Paragraphs)
-                        {
-                            System.Diagnostics.Debug.WriteLine(string.Join("\n", paragraph.Words));
-                        }
-                    }
-                }
+                //foreach (var page in response.Pages)
+                //{
+                //    foreach (var block in page.Blocks)
+                //    {
+                //        foreach (var paragraph in block.Paragraphs)
+                //        {
+                //            System.Diagnostics.Debug.WriteLine(string.Join("\n", paragraph.Words));
+                //        }
+                //    }
+                //}
+
+                return response.Text;
 
             }
             catch (Exception e)

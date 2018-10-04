@@ -1,4 +1,5 @@
-﻿using Orthofi.OCR.DTOs;
+﻿using Newtonsoft.Json;
+using Orthofi.OCR.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,13 @@ namespace Orthofi.OCR.Mappers
     {
         public DtoInsuranceCard MapResultsToDto(string json)
         {
-            throw new NotImplementedException();
+            var lines = json.Split("\n".ToCharArray()).ToList();
+            return GetCardFromResults(lines);
         }
 
-        public DtoInsuranceCard GetCardFromResults(DtoGoogleTextDetection dto)
+        public DtoInsuranceCard GetCardFromResults(List<string> lines)
         {
             DtoInsuranceCard card = new DtoInsuranceCard();
-            var lines = GetLines(dto);
             card.CarrierName = GetValueFromLines(lines, GetRegexesForCarrier());
             card.Group = GetValueFromLines(lines, GetRegexesForGroup());
             card.MemberId = GetValueFromLines(lines, GetRegexesForMemberId());
@@ -60,8 +61,8 @@ namespace Orthofi.OCR.Mappers
         {
             return new List<string>
             {
-                @"\ID",
-                @"\id"
+                "ID",
+                "id"
             };
         }
 
@@ -75,7 +76,7 @@ namespace Orthofi.OCR.Mappers
         {
             return new List<string>
             {
-                @"\aetna"
+                "aetna"
             };
         }
 
@@ -88,9 +89,9 @@ namespace Orthofi.OCR.Mappers
         {
             return new List<string>
             {
-                @"\GRP",
-                @"\Group",
-                @"\grp"
+                "GRP",
+                "Group",
+                "grp"
             };
         } 
         #endregion

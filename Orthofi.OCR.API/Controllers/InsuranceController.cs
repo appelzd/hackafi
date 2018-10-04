@@ -20,7 +20,11 @@ namespace Orthofi.OCR.API.Controllers
             IProcessorResultMapper mapper = new GoogleTextDetectionMapper();
 
             var results = processor.GetResultsForImage(url);
-            return mapper.MapResultsToDto(results);
+            var rtn = new JsonResult();
+            rtn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            rtn.Data = mapper.MapResultsToDto(results);
+
+            return rtn;
         }
     }
 }
