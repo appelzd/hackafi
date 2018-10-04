@@ -21,6 +21,7 @@ namespace Orthofi.OCR.Mappers
             card.CarrierName = GetValueFromLines(lines, GetRegexesForCarrier());
             card.Group = GetValueFromLines(lines, GetRegexesForGroup());
             card.MemberId = GetValueFromLines(lines, GetRegexesForMemberId());
+            card.CarrierType = GetValueFromLines(lines, GetRegexesForCarrierTypeLocation());
             return card;
         }
 
@@ -82,8 +83,19 @@ namespace Orthofi.OCR.Mappers
 
         #endregion carriers
 
+        #region 
+        IList<string> GetRegexesForCarrierTypeLocation()
+        {
+            return new List<string>
+            {
+                "PPO",
+                "Dental"
+            };
+        }
+
+        #endregion
+
         #region groups
-       
 
         IList<string> GetRegexesForGroup()
         {

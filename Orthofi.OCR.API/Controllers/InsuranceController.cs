@@ -13,16 +13,18 @@ namespace Orthofi.OCR.API.Controllers
         // GET: Insurance
         public ActionResult Index()
         {
-
             string url = @"C:\Users\David Appel\Pictures\insurance.jpg";
             //TODO inject these
             IImageTextProcessor processor = new GoogleImageTextProcessor();
             IProcessorResultMapper mapper = new GoogleTextDetectionMapper();
 
             var results = processor.GetResultsForImage(url);
+            var dto = mapper.MapResultsToDto(results);
+            dto.ImageUrl = url;
+
             var rtn = new JsonResult();
             rtn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            rtn.Data = mapper.MapResultsToDto(results);
+            rtn.Data = dto;
 
             return rtn;
         }
