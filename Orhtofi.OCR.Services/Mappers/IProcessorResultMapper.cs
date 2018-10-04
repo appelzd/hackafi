@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Orthofi.OCR.Mappers
 {
-    interface IProcessorResultMapper
+    public interface IProcessorResultMapper
     {
         DtoInsuranceCard MapResultsToDto(string json);
     }
