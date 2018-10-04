@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orthofi.OCR", "Orthofi.OCR\Orthofi.OCR.csproj", "{83B5F40D-30B9-44CC-807D-79BC981167C2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orthofi.OCR.Tests", "Orthofi.OCR.Tests\Orthofi.OCR.Tests.csproj", "{CD3F8C12-06D0-469F-BDED-5A1A66717724}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orthofi.OCR.Services", "Orhtofi.OCR.Services\Orthofi.OCR.Services.csproj", "{0513329F-0849-43D7-95F2-424ABC3929A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orthofi.OCR.Repository", "Orthofi.OCR.Repository\Orthofi.OCR.Repository.csproj", "{26C06F8C-EC83-4CCC-9FB1-B396D054F8D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orthofi.OCR.API", "Orthofi.OCR.API\Orthofi.OCR.API.csproj", "{7221D999-1DCA-4F73-A445-ABE5713DA803}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{83B5F40D-30B9-44CC-807D-79BC981167C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83B5F40D-30B9-44CC-807D-79BC981167C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83B5F40D-30B9-44CC-807D-79BC981167C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83B5F40D-30B9-44CC-807D-79BC981167C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD3F8C12-06D0-469F-BDED-5A1A66717724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD3F8C12-06D0-469F-BDED-5A1A66717724}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD3F8C12-06D0-469F-BDED-5A1A66717724}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{26C06F8C-EC83-4CCC-9FB1-B396D054F8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26C06F8C-EC83-4CCC-9FB1-B396D054F8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26C06F8C-EC83-4CCC-9FB1-B396D054F8D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7221D999-1DCA-4F73-A445-ABE5713DA803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7221D999-1DCA-4F73-A445-ABE5713DA803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7221D999-1DCA-4F73-A445-ABE5713DA803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7221D999-1DCA-4F73-A445-ABE5713DA803}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
