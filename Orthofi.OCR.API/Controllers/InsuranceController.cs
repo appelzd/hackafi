@@ -13,6 +13,7 @@ namespace Orthofi.OCR.API.Controllers
         // GET: Insurance
         public ActionResult Index()
         {
+
             string url = @"C:\Users\David Appel\Pictures\insurance.jpg";
             //TODO inject these
             IImageTextProcessor processor = new GoogleImageTextProcessor();
