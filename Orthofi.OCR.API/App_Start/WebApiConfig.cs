@@ -16,19 +16,18 @@ namespace Orthofi.OCR.API
             config.MapHttpAttributeRoutes();
 
             var corsAtt = new EnableCorsAttribute(
-                origins: "http://localhost:4200",
+                origins: "http://localhost:*",
                 headers: "*",
                 methods: "*")
             { SupportsCredentials = false };
 
             config.EnableCors(corsAtt);
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-            
-         }
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
+        }
     }
 }

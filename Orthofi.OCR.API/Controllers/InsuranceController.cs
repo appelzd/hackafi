@@ -11,8 +11,8 @@ using System.Web.Mvc;
 
 namespace Orthofi.OCR.API.Controllers
 {
-    //[EnableCors(origins: "*", headers: "*", methods: "*")]
-    [System.Web.Mvc.RoutePrefix("insurance/card")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [System.Web.Http.RoutePrefix("card")]
     public class InsuranceController : Controller
     {
 
@@ -27,7 +27,7 @@ namespace Orthofi.OCR.API.Controllers
         }
 
 
-        //// GET: Insurance
+        // GET: Insurance
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("{id:int}")]
         public ActionResult Card(int id)
@@ -49,7 +49,7 @@ namespace Orthofi.OCR.API.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        [System.Web.Mvc.Route("")]
+        [System.Web.Http.Route("add")]
         public ActionResult PostCard([FromBody]string pic)
         {
             byte[] img = Convert.FromBase64String(pic);
