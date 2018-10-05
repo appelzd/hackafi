@@ -23,13 +23,18 @@ namespace Orthofi.OCR.Processors
 
         //TODO we should use a factory, which we inject to determin the client, etc.
         //that way, we have testability and plugability
-        public string GetResultsForImage(string imagePath)
+        public string GetResultsForImage(string imagePath, bool isFile)
         {
             var client = GetClient();
             try
             {
                 // Load the image file into memory
-                var image = Image.FetchFromUri(imagePath);
+                Image image = null;
+
+                if(!isFile)
+                    image =Image.FetchFromUri(imagePath);
+                else
+                    image = Image.FromFile(imagePath);
 
                 var response = client.DetectDocumentTextAsync(image).Result;
 

@@ -93,7 +93,8 @@ namespace Orthofi.OCR.Mappers
             {
                 "PPO",
                 "POS",
-                "Dental"
+                "Dental",
+                "HMO"
             };
         }
 

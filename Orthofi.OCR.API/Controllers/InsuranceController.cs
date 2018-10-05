@@ -3,6 +3,7 @@ using Orthofi.OCR.Processors;
 using Orthofi.OCR.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -11,9 +12,9 @@ using System.Web.Mvc;
 
 namespace Orthofi.OCR.API.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     [System.Web.Http.RoutePrefix("card")]
-    public class InsuranceController : Controller
+    public class InsuranceController : ApiController
     {
 
         Dictionary<int, string> pics = new Dictionary<int, string>();
@@ -36,7 +37,7 @@ namespace Orthofi.OCR.API.Controllers
             IImageTextProcessor processor = new GoogleImageTextProcessor();
             IProcessorResultMapper mapper = new GoogleTextDetectionMapper();
 
-            var results = processor.GetResultsForImage(pics[id]);
+            var results = processor.GetResultsForImage(pics[id], false);
             var dto = mapper.MapResultsToDto(results);
             dto.ImageUrl = pics[id];
 
@@ -50,25 +51,24 @@ namespace Orthofi.OCR.API.Controllers
 
         [System.Web.Http.HttpPost]
         [System.Web.Http.Route("add")]
-        public ActionResult PostCard([FromBody]string pic)
+        public IHttpActionResult PostCard([FromBody]string pic)
         {
             byte[] img = Convert.FromBase64String(pic);
+            string path = $"C:\\Users\\David Appel\\Pictures\\{DateTime.Now.Ticks.ToString()}.jpg";
+            var stream = File.Create(path);
+            stream.Write(img, 0, img.Length);
+            stream.Close();
+            stream.Dispose();
 
             //TODO inject these
             IImageTextProcessor processor = new GoogleImageTextProcessor();
             IProcessorResultMapper mapper = new GoogleTextDetectionMapper();
 
-            var results = processor.GetResultsForImage(img);
+            var results = processor.GetResultsForImage(path, true);
             var dto = mapper.MapResultsToDto(results);
-
             dto.ImageUrl = S3Service.UploadFileAsync(img, $"{dto.CarrierName}.jpg").Result;
 
-            var rtn = new JsonResult();
-
-            rtn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            rtn.Data = dto;
-
-            return rtn;
+            return Ok<DtoInsuranceCard>(dto);
         }
 
     }

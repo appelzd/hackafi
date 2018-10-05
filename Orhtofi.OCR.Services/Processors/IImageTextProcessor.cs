@@ -6,7 +6,7 @@ namespace Orthofi.OCR.Processors
 {
     public interface IImageTextProcessor
     {
-        string GetResultsForImage(string imagePath);
+        string GetResultsForImage(string imagePath, bool isFile);
         string GetResultsForImage(byte[] image);
     }
 }
