@@ -63,7 +63,9 @@ namespace Orthofi.OCR.Mappers
             return new List<string>
             {
                 "ID",
-                "id"
+                "id",
+                "Identification",
+                "Member Number"
             };
         }
 
@@ -77,7 +79,8 @@ namespace Orthofi.OCR.Mappers
         {
             return new List<string>
             {
-                "aetna"
+                "aetna",
+                "DELTA"
             };
         }
 
@@ -89,6 +92,7 @@ namespace Orthofi.OCR.Mappers
             return new List<string>
             {
                 "PPO",
+                "POS",
                 "Dental"
             };
         }

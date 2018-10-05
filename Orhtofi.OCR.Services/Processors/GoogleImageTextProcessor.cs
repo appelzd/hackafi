@@ -29,20 +29,9 @@ namespace Orthofi.OCR.Processors
             try
             {
                 // Load the image file into memory
-                var image = Image.FromFile(@"C:\Users\David Appel\Pictures\insurance.jpg");
+                var image = Image.FetchFromUri(imagePath);
 
                 var response = client.DetectDocumentTextAsync(image).Result;
-
-                //foreach (var page in response.Pages)
-                //{
-                //    foreach (var block in page.Blocks)
-                //    {
-                //        foreach (var paragraph in block.Paragraphs)
-                //        {
-                //            System.Diagnostics.Debug.WriteLine(string.Join("\n", paragraph.Words));
-                //        }
-                //    }
-                //}
 
                 return response.Text;
 

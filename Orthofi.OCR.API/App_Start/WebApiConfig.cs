@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Orthofi.OCR.API
 {
@@ -14,7 +15,13 @@ namespace Orthofi.OCR.API
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.EnableCors();
+            var corsAtt = new EnableCorsAttribute(
+                origins: "*",
+                headers: "*",
+                methods: "*")
+            { SupportsCredentials = true };
+
+            config.EnableCors(corsAtt);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
