@@ -1,5 +1,6 @@
 ﻿using Orthofi.OCR.Mappers;
 using Orthofi.OCR.Processors;
+using Orthofi.OCR.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 namespace Orthofi.OCR.API.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [System.Web.Http.RoutePrefix("card")]
     public class InsuranceController : Controller
     {
 
@@ -27,7 +29,7 @@ namespace Orthofi.OCR.API.Controllers
 
         // GET: Insurance
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("card/{id:int}")]
+        [System.Web.Http.Route("{id:int}")]
         public ActionResult Card(int id)
         {
             //TODO inject these
@@ -46,7 +48,28 @@ namespace Orthofi.OCR.API.Controllers
             return rtn;
         }
 
-        
-        
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("add")]
+        public ActionResult PostCard([FromBody]string pic)
+        {
+            byte[] img = Convert.FromBase64String(pic);
+
+            //TODO inject these
+            IImageTextProcessor processor = new GoogleImageTextProcessor();
+            IProcessorResultMapper mapper = new GoogleTextDetectionMapper();
+
+            var results = processor.GetResultsForImage(img);
+            var dto = mapper.MapResultsToDto(results);
+
+            dto.ImageUrl = S3Service.UploadFileAsync(img, $"{dto.CarrierName}.jpg").Result;
+
+            var rtn = new JsonResult();
+
+            rtn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            rtn.Data = dto;
+
+            return rtn;
+        }
+
     }
 }

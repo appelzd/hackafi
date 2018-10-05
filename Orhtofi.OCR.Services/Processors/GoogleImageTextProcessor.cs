@@ -44,5 +44,28 @@ namespace Orthofi.OCR.Processors
 
             throw new NotImplementedException();
         }
+
+        public string GetResultsForImage(byte[] image)
+        {
+            var client = GetClient();
+            try
+            {
+                // Load the image file into memory
+                var img = Image.FromBytes(image);
+
+                var response = client.DetectDocumentTextAsync(img).Result;
+
+                return response.Text;
+
+            }
+            catch (Exception e)
+            {
+                var r = e.Message;
+                throw;
+            }
+
+            throw new NotImplementedException();
+
+        }
     }
 }
