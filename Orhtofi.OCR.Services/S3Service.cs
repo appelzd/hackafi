@@ -9,7 +9,7 @@ namespace Orthofi.OCR.Services
 {
     public class S3Service
     {
-        private const string bucketName = "*** provide bucket name ***";
+        private const string bucketName = "appel-hack-too";
         //private const string keyName = "*** provide a name for the uploaded object ***";
         //private const string filePath = "*** provide the full path name of the file to upload ***";
         // Specify your bucket region (an example region is shown).
