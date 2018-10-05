@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 
 namespace Orthofi.OCR.API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class InsuranceController : Controller
     {
         // GET: Insurance
@@ -23,6 +25,7 @@ namespace Orthofi.OCR.API.Controllers
             dto.ImageUrl = url;
 
             var rtn = new JsonResult();
+            
             rtn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             rtn.Data = dto;
 
