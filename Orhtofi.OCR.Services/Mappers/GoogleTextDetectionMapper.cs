@@ -106,6 +106,7 @@ namespace Orthofi.OCR.Mappers
         {
             return new List<string>
             {
+                "Group Number",
                 "GRP",
                 "Group",
                 "grp"

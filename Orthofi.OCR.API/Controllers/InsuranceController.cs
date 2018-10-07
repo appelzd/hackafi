@@ -54,19 +54,19 @@ namespace Orthofi.OCR.API.Controllers
         public IHttpActionResult PostCard([FromBody]string pic)
         {
             byte[] img = Convert.FromBase64String(pic);
-            string path = $"C:\\Users\\David Appel\\Pictures\\{DateTime.Now.Ticks.ToString()}.jpg";
-            var stream = File.Create(path);
-            stream.Write(img, 0, img.Length);
-            stream.Close();
-            stream.Dispose();
+            //string path = $"C:\\Users\\David Appel\\Pictures\\{DateTime.Now.Ticks.ToString()}.jpg";
+            //var stream = File.Create(path);
+            //stream.Write(img, 0, img.Length);
+            //stream.Close();
+            //stream.Dispose();
 
             //TODO inject these
             IImageTextProcessor processor = new GoogleImageTextProcessor();
             IProcessorResultMapper mapper = new GoogleTextDetectionMapper();
 
-            var results = processor.GetResultsForImage(path, true);
+            var results = processor.GetResultsForImage(img);
             var dto = mapper.MapResultsToDto(results);
-            dto.ImageUrl = S3Service.UploadFileAsync(img, $"{dto.CarrierName}.jpg").Result;
+            //dto.ImageUrl = S3Service.UploadFileAsync(img, $"{dto.CarrierName}.jpg").Result;
 
             return Ok<DtoInsuranceCard>(dto);
         }
